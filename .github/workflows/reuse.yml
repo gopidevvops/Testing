@@ -1,0 +1,29 @@
+name: Reusable workflow
+
+on:
+  workflow_call:
+    inputs:
+      tarfilename:
+        required: true
+        type: string
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: checkout this repo  
+        uses: actions/checkout@v2
+      - name: checkout testing repo
+        uses: actions/checkout@v2
+        with:
+          repository: gopidevvops/githubactions
+          path: my-action
+          ref: v3.0
+      # Runs a single command using the runners shell
+      - name: Run a multi-line script
+        run: |
+          ls -ltr
+          cat ./my-action/.github/workflows/demo.yml
+          tar -cvf ${{inputs.tarfilename}}.tar *
+          ls -ltr
