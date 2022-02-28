@@ -19,7 +19,8 @@ jobs:
         with:
           repository: gopidevvops/githubactions
           path: my-action
-          ref: main
+          ref: v3.0
+          token: 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
       # Runs a single command using the runners shell
       - name: Run a multi-line script
         run: |
